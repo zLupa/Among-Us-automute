@@ -28,11 +28,10 @@ c.on("packet", (nbytes) => {
 			 * So, if you want more speed than reliable you should use UDP.
 			 */
 			if (ret.info.protocol === PROTOCOL.IP.UDP) {
-				
+
 				/**
 				 * Here, i'm decoding the packet information.
 				 * That return things like destination port, source port and length.
-				 * But here, i'm looking for the magic byte.
 				 */
 				ret = decoders.UDP(buffer, ret.offset);
 
@@ -43,7 +42,7 @@ c.on("packet", (nbytes) => {
 					.match(/.{1,2}/g);
 
 				/**
-				 * In networking is common to have a number to identify their packets and is know by magic byte.
+				 * In networking is common to have a byte to identify their packets and is know by magic byte.
 				 * Among Us use 70 to identify their packets to the client.
 				 */
 				if (decodedPacket[0] != 70) return;
