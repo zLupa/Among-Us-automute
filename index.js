@@ -32,7 +32,7 @@ c.on("packet", (nbytes) => {
 		/**
 		 * Here, i'm decoding the packet information. 
 		 * That return things like destination port, source port and length.
-     * But here, i'm looking for the magic byte.
+     	 * But here, i'm looking for the magic byte.
 		 */
 		ret = decoders.UDP(buffer, ret.offset);
 		
@@ -50,7 +50,7 @@ c.on("packet", (nbytes) => {
 
 		/**
 		 * Here, i'm decoding the real data that Among Us are sending to us.
-     * And after, converting that data into an array. 
+         * And after, converting that data into an array. 
 		 */
         let decodedDataPacket = buffer
           .slice(ret.offset, nbytes)
