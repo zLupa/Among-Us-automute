@@ -42,12 +42,6 @@ c.on("packet", (nbytes) => {
 					.match(/.{1,2}/g);
 
 				/**
-				 * In networking is common to have a byte to identify their packets and is know by magic byte.
-				 * Among Us use 70 to identify their packets to the client.
-				 */
-				if (decodedPacket[0] != 70) return;
-
-				/**
 				 * Here, i'm decoding the real data that Among Us are sending to us.
 				 * And after, converting that data into an array.
 				 */
@@ -56,7 +50,12 @@ c.on("packet", (nbytes) => {
 					.toString("hex")
 					.toLowerCase()
 					.match(/.{1,2}/g);
-
+				/**
+				 * In networking is common to have a byte to identify their packets and is know by magic byte.
+				 * Among Us use 01 to identify their packets to the client.
+				 */
+				if (decodedDataPacket[0] != 01) return;
+				
 				/**
 				 * All the packets that are useful for us isn't bigger than 70 bytes, so we discard the rest.
 				 */
